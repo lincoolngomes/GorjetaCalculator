@@ -75,9 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
             //Calcula a gorjeta total
             double gorjeta = valorDigitado * (porcentagem/100);
+            double total = valorDigitado + gorjeta;
 
             //exibe a gorjeta e total
             editarGorjeta.setText("R$ " + df.format(gorjeta));
+
+            editarTotal.setText("R$ " + df.format(total));
 
 
         }
