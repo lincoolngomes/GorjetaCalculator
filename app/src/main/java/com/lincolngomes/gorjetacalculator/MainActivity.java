@@ -63,16 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void calcular(){
 
-        //Transformar editarVR para String
-        String valorRecuperado = editarVR.getText().toString();
 
-        //Function - se editarVR == "" retorn Toast
+        String valorRecuperado = editarVR.getText().toString();
         if( valorRecuperado == null || valorRecuperado.equals("")){
 
             Toast.makeText(getApplicationContext(),"Digite o valor da refeição!", Toast.LENGTH_SHORT).show();
         }else{
-
-        //Start function quando Digitar o editarVR
 
             //Convertendo string para double
             double valorDigitado = Double.parseDouble( valorRecuperado );
