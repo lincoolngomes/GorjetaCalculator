@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seekBar;
 
     private double porcentagem = 0;
+
+    //Formatação decimais
+    DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
 
 
+
+
         //Adicionando listener SeekBar
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -38,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 porcentagem = progress;
                 editarPorcentagem.setText( Math.round(porcentagem) + " %");
+                calcular();
             }
 
             @Override
@@ -51,4 +60,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void calcular(){
+
+
+        String valorRecuperado = editarVR.getText().toString();
+        if( valorRecuperado == null || valorRecuperado.equals("")){
+
+            Toast.makeText(getApplicationContext(),"Digite o valor da refeição!", Toast.LENGTH_SHORT).show();
+        }else{
+
+            //Convertendo string para double
+            double valorDigitado = Double.parseDouble( valorRecuperado );
+
+            //Calcula a gorjeta total
+            double gorjeta = valorDigitado * (porcentagem/100);
+
+            //exibe a gorjeta e total
+            editarGorjeta.setText("R$ " + df.format(gorjeta));
+
+
+        }
+
+
+    }
+
+
 }
